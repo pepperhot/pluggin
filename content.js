@@ -6,27 +6,24 @@ img.style.transition = "top 0.2s ease, left 0.2s ease";
 img.style.zIndex = "1000";
 document.body.appendChild(img);
 
-function updateImagePosition() {
-  const player = document.getElementById('movie_player');
-  if (!player || !img.complete) return;
+let offsetX = 20; // Plus cette valeur est grande, plus l’image est à droite
 
-  const rect = player.getBoundingClientRect();
+function updatePosition() {
+  const player = document.getElementById("movie_player");
+  if (player && img.complete) {
+    const rect = player.getBoundingClientRect();
 
-  // Centrage vertical parfait
-  const top = window.scrollY + rect.top + rect.height - img.naturalHeight;
-  const left = window.scrollX + rect.left - img.naturalWidth +10;
+    const top = window.scrollY + rect.top + rect.height / 2 - img.naturalHeight / 2;
+    const left = window.scrollX + rect.left - img.naturalWidth + offsetX;
 
-  img.style.top = `${top}px`;
-  img.style.left = `${left}px`;
+    img.style.top = `${top}px`;
+    img.style.left = `${left}px`;
+  }
+
+  requestAnimationFrame(updatePosition); // Boucle infinie fluide
 }
 
-// Dès que l'image est chargée
-img.onload = updateImagePosition;
-
-// Sur scroll, resize, etc.
-window.addEventListener('scroll', updateImagePosition);
-window.addEventListener('resize', updateImagePosition);
-
-// Observer les changements YouTube AJAX
-const observer = new MutationObserver(updateImagePosition);
-observer.observe(document.body, { childList: true, subtree: true });
+// Quand l'image est prête, on lance la boucle
+img.onload = () => {
+  updatePosition();
+};

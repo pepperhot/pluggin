@@ -14,7 +14,7 @@ function updateImagePosition() {
 
   // Centrage vertical parfait
   const top = window.scrollY + rect.top + rect.height / 2 - img.naturalHeight / 2;
-  const left = window.scrollX + rect.left - img.naturalWidth - 10;
+  const left = window.scrollX + rect.left - img.naturalWidth;
 
   img.style.top = `${top}px`;
   img.style.left = `${left}px`;

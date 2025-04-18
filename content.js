@@ -6,7 +6,7 @@ img.style.transition = "top 0.2s ease, left 0.2s ease";
 img.style.zIndex = "1000";
 document.body.appendChild(img);
 
-let offsetX = - 20; // Plus cette valeur est grande, plus l’image est à droite
+let offsetX = 60; // Plus cette valeur est grande, plus l’image est à droite
 
 function updatePosition() {
   const player = document.getElementById("movie_player");

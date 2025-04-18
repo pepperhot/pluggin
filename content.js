@@ -13,8 +13,8 @@ function updateImagePosition() {
   const rect = player.getBoundingClientRect();
 
   // Centrage vertical parfait
-  const top = window.scrollY + rect.top + rect.height / 2 - img.naturalHeight / 2;
-  const left = window.scrollX + rect.left - img.naturalWidth - 100;
+  const top = window.scrollY + rect.top + rect.height -50 - img.naturalHeight / 2;
+  const left = window.scrollX + rect.left - img.naturalWidth - 1000;
 
   img.style.top = `${top}px`;
   img.style.left = `${left}px`;

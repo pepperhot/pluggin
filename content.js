@@ -9,27 +9,26 @@ pauseImg.style.width = "100px";
 pauseImg.style.height = "auto";
 document.body.appendChild(pauseImg);
 /*---------------image sus----------------------*/
-const img = document.createElement("img");
-img.src = "https://github.com/pepperhot/pluggin/blob/main/image/sus.png?raw=true";
-img.className = "yt-watcher";
-img.style.position = "absolute";
-img.style.transition = "top 0.2s ease, left 0.2s ease";
-img.style.zIndex = "1000";
-pauseImg.style.pointerEvents = "none";
-document.body.appendChild(img);
+const susImg = document.createElement("img");
+susImg.src = "https://github.com/pepperhot/pluggin/blob/main/image/sus.png?raw=true";
+susImg.className = "yt-watcher";
+susImg.style.position = "absolute";
+susImg.style.transition = "top 0.2s ease, left 0.2s ease";
+susImg.style.zIndex = "1000";
+susImg.style.pointerEvents = "none";
+document.body.appendChild(susImg);
 
 function updatePosition() {
   const player = document.getElementById("movie_player");
-  if (player && img.complete) {
+  if (player && susImg.complete) {
     const rect = player.getBoundingClientRect();
-
-    img.style.top = window.scrollY + rect.top + rect.height / 2 - img.naturalHeight / 2;
-    img.style.left = window.scrollX + rect.left - img.naturalWidth + 110;
+    susImg.style.top = `${window.scrollY + rect.top + rect.height / 2 - susImg.naturalHeight / 2}px`;
+    susImg.style.left = `${window.scrollX + rect.left - susImg.naturalWidth + 110}px`;
   }
-
   requestAnimationFrame(updatePosition);
 }
-img.onload = () => {
+
+susImg.onload = () => {
   updatePosition();
 };
 let pauseImgs = [];
@@ -90,5 +89,4 @@ if (videoElement) {
       updatePauseWatcher(e.clientX, e.clientY);
     }
   }
-  document.addEventListener("mousemove", mouseMoveHandler);
 }

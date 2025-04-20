@@ -1,3 +1,4 @@
+/*------------------image pause------------------*/
 const pauseImg = document.createElement("img");
 pauseImg.className = "pause-watcher";
 pauseImg.style.position = "absolute";
@@ -7,7 +8,30 @@ pauseImg.style.pointerEvents = "none";
 pauseImg.style.width = "100px";
 pauseImg.style.height = "auto";
 document.body.appendChild(pauseImg);
+/*---------------image sus----------------------*/
+const img = document.createElement("img");
+img.src = "https://github.com/pepperhot/pluggin/blob/main/image/sus.png?raw=true";
+img.className = "yt-watcher";
+img.style.position = "absolute";
+img.style.transition = "top 0.2s ease, left 0.2s ease";
+img.style.zIndex = "1000";
+pauseImg.style.pointerEvents = "none";
+document.body.appendChild(img);
 
+function updatePosition() {
+  const player = document.getElementById("movie_player");
+  if (player && img.complete) {
+    const rect = player.getBoundingClientRect();
+
+    img.style.top = window.scrollY + rect.top + rect.height / 2 - img.naturalHeight / 2;
+    img.style.left = window.scrollX + rect.left - img.naturalWidth + 110;
+  }
+
+  requestAnimationFrame(updatePosition);
+}
+img.onload = () => {
+  updatePosition();
+};
 let pauseImgs = [];
 for (let i = 0; i <= 4; i++) {
   const img = new Image();
@@ -68,33 +92,3 @@ if (videoElement) {
   }
   document.addEventListener("mousemove", mouseMoveHandler);
 }
-/*const img = document.createElement("img");
-img.src = "https://github.com/pepperhot/pluggin/blob/main/image/sus.png?raw=true";
-img.className = "yt-watcher";
-img.style.position = "absolute";
-img.style.transition = "top 0.2s ease, left 0.2s ease";
-img.style.zIndex = "1000";
-document.body.appendChild(img);
-
-let offsetX = 110; // Plus cette valeur est grande, plus l’image est à droite
-
-function updatePosition() {
-  const player = document.getElementById("movie_player");
-  if (player && img.complete) {
-    const rect = player.getBoundingClientRect();
-
-    const top = window.scrollY + rect.top + rect.height / 2 - img.naturalHeight / 2;
-    const left = window.scrollX + rect.left - img.naturalWidth + offsetX;
-
-    img.style.top = ${top}px;
-    img.style.left = ${left}px;
-  }
-
-  requestAnimationFrame(updatePosition); // Boucle infinie fluide
-}
-
-// Quand l'image est prête, on lance la boucle
-img.onload = () => {
-  updatePosition();
-};
-*/

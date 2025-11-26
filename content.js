@@ -28,7 +28,7 @@ document.body.appendChild(pauseImg);
 const pauseImgs = [];
 for (let i = 0; i <= 4; i++) {
   const img = new Image();
-  img.src = `https://github.com/pepperhot/pluggin/blob/main/image/pause${i}.png?raw=true;`;
+  img.src = `https://github.com/pepperhot/pluggin/blob/main/image/pause${i}.png?raw=true`;
   pauseImgs.push(img);
 }
 
